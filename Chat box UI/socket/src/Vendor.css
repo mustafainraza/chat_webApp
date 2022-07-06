@@ -1,0 +1,70 @@
+.main {
+  margin-top: 6px;
+  justify-content: center;
+}
+
+.em {
+  margin-top: 100px;
+}
+
+.em input {
+  width: 300px;
+  height: 50px;
+  border-radius: 60px;
+  box-shadow: inset 0px 0px 25px 0px #888;
+  border: none;
+  outline: none;
+  background-color: #fff;
+  padding-left: 2rem;
+  font-weight: 500;
+  font-size: medium;
+}
+
+::placeholder {
+  color: grey;
+}
+
+.vbtn {
+  margin-top: 8px;
+  margin-left: 220px;
+  background-color: #c050f0;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+.vbtn:after {
+  content: "";
+  background: #f1f1f1;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s;
+}
+.vbtn:active {
+  background-color: #c050f0;
+  box-shadow: 0 3px #666;
+  transform: translateY(3px);
+}
+
+.vbtn:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
+}
+
+.vbtn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  background-color: #ad13f0;
+}
