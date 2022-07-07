@@ -1,13 +1,16 @@
 import React from "react";
 import "./Login.css";
-// import { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import profile from "../Image/profile.png";
 import Email from "../Image/email.png";
 import pass from "../Image/pass.png";
 import { Link } from "react-router-dom";
 
-export const Login = ({ email, setEmail, password, setPassword }) => {
+export const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = () => {
     console.log(email);
     console.log(password);
@@ -49,7 +52,7 @@ export const Login = ({ email, setEmail, password, setPassword }) => {
               />
             </div>
             <div className="login-button">
-              <Link to="/home" params={{ email }}>
+              <Link to="/home">
                 <button onClick={handleSubmit}>Login</button>
               </Link>
             </div>
