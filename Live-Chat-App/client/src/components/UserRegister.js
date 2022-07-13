@@ -1,3 +1,4 @@
+import "../UI/UserRegistration.css"
 import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
@@ -71,7 +72,7 @@ const UserRegister = () => {
   };
 
   return (
-    <div className="App">
+    <div className="Register">
       {!showChat ? (
         <div className="joinChatContainer">
           <h3>User Registration</h3>

@@ -1,4 +1,3 @@
-import './App.css';
 import ChatBox from './components/ChatBox';
 import UserRegister from './components/UserRegister';
 import VendorRegister from './components/VendorRegister';
@@ -19,11 +18,11 @@ function App() {
         <Route path="/" element={<Selection />} />
         <Route path="/client" element={<UserRegister />} />
         <Route path="/vendor" element={<Signup />} />
-        <Route path="/vendor" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/temp" element={<Temp />} />
         <Route path="/waitinglist" element={<VendorsListPanel />} />
         <Route path="/chatbox" element={<ChatBox />} />
-        <Route path="/vendorchatbox" element={<VendorChatBox />} />
+        <Route path="/vendorchatbox" element={<VendorChatBox  />} />
         </Routes>
       </Router>
     </div>
