@@ -35,7 +35,7 @@ export const Login = () => {
       .post("http://localhost:3004/vendors/rooms", {
         v_email: email,
         room: room1,
-        status: true,
+        status: false,
       })
       .then(function (response) {
         if (response.status === 200) {

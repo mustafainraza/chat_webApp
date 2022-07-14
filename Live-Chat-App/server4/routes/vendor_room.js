@@ -5,6 +5,27 @@ const query = require("./../models/vendor_room.js");
 
 router.use(express.json());
 
+//rooms post
+router.post("/rooms", (req, res) => {
+  const user = req.body;
+
+        let insertQuery = `insert into availableserver(v_email,room_id,status) 
+          values('${user.v_email}','${user.room}', '${user.status}')`;
+
+        client.query(insertQuery, (err, result) => {
+          if (!err) {
+            res.send("Insertion was successful");
+            console.log("Insertion is Successfull");
+          } else {
+            console.log(err.message);
+          }
+        });
+
+
+  client.end;
+});
+
+
 router.post("/", async (req, res) => {
   client.query(query, (err, result) => {});
 

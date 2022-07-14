@@ -55,44 +55,20 @@ router.post("/Signup", (req, res) => {
 
 
 //zain
-router.get("/", async (req, res) => {
-  client.query(`SELECT * FROM postgres.clients`, (err, result) => {
-    if (!err) {
-      console.log(result);
-      res.send(result);
-      // res.send("ssasd")
-    } 
-  });
-  client.end;
-});
-
+// 
+//ar
 router.post("/", async (req, res) => {
-  client.query(query, (err, message) => {});
-
-  client.query(
-    `select clients.email from clients where email = '${req.body.email}'`,
-    (err, result) => {
-      if (!err) {
-        if (!result.rows.length) {
-          let insertQuery = `insert into clients (name , email, waiting)
-                            values ('${req.body.name}' , '${req.body.email}', '${req.body.waiting}')`;
-
-          client.query(insertQuery, (err, message) => {
-            if (!err) {
-              res.send("ok");
-            } else {
-              console.log(err.message);
-            }
-          });
-        } else {
-          res.send("Email already exists");
-        }
-      } else {
-        console.log(err.message);
-      }
-    }
-  );
-  client.end;
+  try {
+    const { email } = req.body;
+    const newTodo = await client.query(
+      "INSERT INTO client (email) VALUES($1) RETURNING *",
+      [email]
+    );
+        res.send("send");
+    //res.json(newTodo.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 router.put("/:email", (req, res) => {
