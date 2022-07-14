@@ -5,7 +5,26 @@ const query = require("./../models/clients.js");
 const query1 = require("./../models/vendors.js");
 
 router.use(express.json());
- 
+
+
+router.get("/availableroom", (req, res) => {
+  const val =false;
+  console.log("objectobject");
+  client.query(`select room_id from availableserver as v where v.status = ${val}`, (err, result) => {
+    if (!err) {
+      console.log("object");
+      console.log(result.rows[0].room_id);
+      res.send(result.rows[0].room_id);
+    }
+  else{
+    console.log(err.message);
+  }
+});
+  
+  client.end;
+});
+
+
 router.post("/", async (req, res) => {
 client.query(query1, (err, result) => {});
  client.query(
@@ -93,6 +112,7 @@ router.get("/:room", (req, res) => {
   client.end;
 });
 
+
 //rooms post
 router.post("/rooms", (req, res) => {
   const user = req.body;
@@ -104,6 +124,27 @@ router.post("/rooms", (req, res) => {
           if (!err) {
             res.send("Insertion was successful");
             console.log("Insertion is Successfull");
+          } else {
+            console.log(err.message);
+          }
+        });
+
+
+  client.end;
+});
+
+//update
+
+router.post("/update/:rooms", (req, res) => {
+  const val=true;
+  const user = req.body;
+
+        let insertQuery = `update availableserver set status=${val} where room_id=${req.params.rooms}`; 
+
+        client.query(insertQuery, (err, result) => {
+          if (!err) {
+            res.send("update was successful");
+            console.log("update is Successfull");
           } else {
             console.log(err.message);
           }

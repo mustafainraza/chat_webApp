@@ -23,70 +23,21 @@ const io = require("socket.io")(5000, {
 });
 // const io = require("socket.io")(5000);
 var value, value2;
-
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
-  
-  socket.on("send_message", async(data) => {
-      socket.to(data.room).emit("receive_message", data);
-      valmsg = data.message;
-      rommIn = data.room;
-      authr = data.author;
-      time = data.time;
-      sendmsg(value);
-      console.log(valmsg);
-      console.log(data.room);
-  })
-  const sendmsg =(value) =>{
-    console.log(value);
-    // socket.to(value.room).emit("receive_message", value);
 
-const { Kafka } = require('kafkajs')
-const Chance = require('chance');
-const chance = new Chance();
-
-const kafka = new Kafka({
-  clientId: 'my-producer',
-  brokers: ['localhost:9092']
-})
-
-const producer = kafka.producer()
-const topic = 'animals';
-
-const producerMessage = async() =>{
-
-
-    try {
-              value2 = "HELLO"
-              value = "| Time: " + time + " - Username: " + authr + " - Message: [ " + valmsg + " ] - Room: " + rommIn + " |"
-              await producer.send({
-                topic,
-                messages: [
-                  { value },
-                ],        
-            });
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-const run = async () => {
-  // Producing
-  await producer.connect()
-  setInterval(producerMessage, 1000);
-}
-
-run().catch(console.error) 
-}  
   socket.on("join_room", (data) => {
     socket.join(data);
-    console.log(`User with ID: ${socket.id} joined room: ${data} :) `);
-  })
-  
-  
-  // socket.on("send_message", (data) => {
-    // socket.to(data.room).emit("receive_message", data);
-  // });
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
+  });
   
   socket.on("leave_room",()=>{
     console.log("User Disconnected");
@@ -96,6 +47,53 @@ run().catch(console.error)
     console.log("User Disconnected", socket.id);
   });
 });
+    // socket.to(value.room).emit("receive_message", value);}
+
+// const { Kafka } = require('kafkajs')
+// const Chance = require('chance');
+// const chance = new Chance();
+
+// const kafka = new Kafka({
+//   clientId: 'my-producer',
+//   brokers: ['localhost:9092']
+// })
+
+// const producer = kafka.producer()
+// const topic = 'animals';
+
+// const producerMessage = async() =>{
+
+
+//     try {
+//               value2 = "HELLO"
+//               value = "| Time: " + time + " - Username: " + authr + " - Message: [ " + valmsg + " ] - Room: " + rommIn + " |"
+//               await producer.send({
+//                 topic,
+//                 messages: [
+//                   { value },
+//                 ],        
+//             });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+// const run = async () => {
+//   // Producing
+//   await producer.connect()
+//   setInterval(producerMessage, 1000);
+// }
+
+// run().catch(console.error) 
+// }  
+
+  
+  
+  // socket.on("send_message", (data) => {
+    // socket.to(data.room).emit("receive_message", data);
+  // });
+  
+
 
 app.use(express.json());
 

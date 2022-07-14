@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import VendorChatBox from './components/VendorChatBox';
 import { Signup } from './components/Signup';
 import { Login } from './components/Login';
+import Client from './components/Client';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Router>
         <Routes>
         <Route path="/" element={<Selection />} />
-        <Route path="/client" element={<UserRegister />} />
+        <Route path="/client" element={<Client />} />
         <Route path="/vendor" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/temp" element={<Temp />} />
