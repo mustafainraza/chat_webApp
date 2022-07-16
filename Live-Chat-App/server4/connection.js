@@ -2,18 +2,19 @@ const Pool = require("pg").Pool;
 
 const pool = new Pool({
   user: "postgres",
-  password: "admin",
+  password: "12345678",
   host: "localhost",
-  port: 5432,
-  database: "chat_application"
+  port: 1234,
+  database: "chatapplication",
 });
 
-pool.connect(function(err) {
-  if (err) {console.log("not connected");
-  console.log(err);
+pool.connect(function (err) {
+  if (err) {
+    console.log("not connected");
+    console.log(err);
+  } else {
+    console.log("Connected!");
   }
-  else{console.log("Connected!");}
-  
 });
 
 module.exports = pool;
